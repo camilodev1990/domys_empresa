@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block content1 %}
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <div class="card color2" data-bs-theme="dark">
+        <div class="card-header h1 text-white">Cerrar Sesion</div>
+
+        <div class="card-body">
+          <p>¿Estás seguro de que quieres cerrar sesión?</p>
+
+          <form method="post" class="formulario">
+            {% csrf_token %}
+
+            <div class="formulario-boton">
+              <button class="btn btn-dark" type="submit">Cerrar Sesion</button>
+              <a href="{% url 'base' %}" class="btn btn-dark">Cancelar</a>
+            </div>      
+           
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

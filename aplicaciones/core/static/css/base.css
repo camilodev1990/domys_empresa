@@ -1,0 +1,58 @@
+:root {
+  --color1:#5F6F65;
+  --color2:#808D7C;
+  --color3:#9CA986;
+  --color4:#C9DABF;
+  --transparent: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* fuentes de google */
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-medium {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/*----------------------------------*/
+
+body {
+  background: var(--color4);  
+}
+
+.color1 {
+  background: var(--color1);
+}
+
+.color2 {
+  background: var(--color2);
+}
+
+.color3 {
+  background: var(--color3);
+}
+
+.color4 {
+  background: var(--color4);
+}
+
+.transparente {
+  background: var(--transparent);
+}

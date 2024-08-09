@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+{% endblock %}
+
+{% block title %}Eliminar Cuenta{% endblock %}
+
+{% block content1 %}
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <div class="card color2" data-bs-theme="dark">
+        <div class="card-header h1 text-white">Eliminar Cuenta</div>
+
+        <div class="card-body">
+          <p>¿Está seguro de que desea eliminar su cuenta? Esta acción no se puede deshacer.</p>
+
+          <form method="post" class="formulario">
+            {% csrf_token %}
+
+            <div class="formulario-input">
+              <input class="transparente{% if form.password.errors %} is-invalid{% endif %}" type="password" name="password" placeholder="Contraseña">                
+                {% if form.password.errors %}                  
+                  {{ form.password.errors }}                  
+                {% endif %}              
+            </div>
+          
+            <div class="formulario-boton">
+              <button class="btn btn-dark" type="submit">Eliminar Cuenta</button>
+              <a href="{% url 'base' %}" class="btn btn-dark">Cancelar</a>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

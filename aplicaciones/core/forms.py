@@ -1,6 +1,9 @@
+from typing import Any
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from django.contrib.auth.models import User
+
+from aplicaciones.core.models import ListaNegra, TerminosYCondiciones
 
 
 # Formulario de registro de usuario
@@ -9,12 +12,16 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data["email"]
-        if commit:
-            user.save()
-        return user
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get('username')
+        email = cleaned_data.get('email')
+
+        # Verificar si el nombre de usuario o correo electrónico están en la lista negra
+        if ListaNegra.objects.filter(username=username).exists() or ListaNegra.objects.filter(email=email).exists():
+            raise forms.ValidationError("No puedes registrar una cuenta con estos datos porque están en la lista negra.")
+
+        return cleaned_data
     
 
 #formulario de login
@@ -44,3 +51,24 @@ class CustomSetPasswordForm(SetPasswordForm):
 #formulario para cambiar contraseña una vez esta autenticado el usuario
 class CustomPasswordChangeForm(PasswordChangeForm):
     pass
+
+#-------------------------------------------------------------------------------------------------------------
+#formulario para aceptar terminos y condiciones
+class TerminosYCondicionesForm(forms.ModelForm):
+    class Meta:
+        model = TerminosYCondiciones
+        fields = ['aceptado']
+
+        widgets = {
+            'aceptado': forms.CheckboxInput(attrs={'class': 'form-check-input'}),  # Añadir clases CSS
+        }
+        labels = {
+            'aceptado': 'Acepto los términos y condiciones',  # Etiqueta personalizada
+        }
+
+    def clean_aceptado(self):
+        data = self.cleaned_data.get("aceptado")
+       # if not data:
+        #    raise forms.ValidationError("Debes aceptar los términos y condiciones para continuar.")        
+        return data
+#-------------------------------------------------------------------------------------------------------------

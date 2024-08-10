@@ -1,0 +1,90 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/terminos.css' %}" />
+{% endblock %} 
+
+{% block title %}Terminos y condiciones{% endblock %} 
+
+{% block content1 %}
+<div class="container text-center">
+  <h1>Términos y Condiciones</h1>
+</div>
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Introducción</h3>
+    <li class="list-group-item color4 m-1">Bienvenido a DOMYS EMPRESA. Al acceder y utilizar este sitio web, aceptas estar sujeto a los siguientes términos y condiciones.</li>
+  </ul>
+</div>
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Uso del Sitio Web</h3>
+    <li class="list-group-item color4 m-1">[Detalles sobre el uso permitido del sitio web]</li>
+  </ul>
+</div>
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Productos y Servicios</h3>
+    <li class="list-group-item color4 m-1">[Información sobre productos, disponibilidad, etc.]</li>
+    <li class="list-group-item color4 m-1">escribir sobre pedidos grandes</li>
+    <li class="list-group-item color4 m-1">1. Cada producto será recogido por el repartidor en el tiempo indicado a la hora de registrarlo en el area de inventario.</li>
+  </ul>
+</div>
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Política de Pago</h3>
+    <li class="list-group-item color4 m-1">[Métodos de pago aceptados, condiciones, etc.]</li>
+  </ul>
+</div>
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Envíos y Devoluciones</h3>
+    <li class="list-group-item color4 m-1">[Información sobre envíos, devoluciones, reembolsos, etc.]</li>
+  </ul>
+</div>
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Envíos y Devoluciones</h3>
+    <li class="list-group-item color4 m-1">[Limitaciones de responsabilidad, garantías, etc.]</li>
+  </ul>
+</div>
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Privacidad</h3>
+    <li class="list-group-item color4 m-1">[Resumen de la política de privacidad]</li>
+  </ul>
+</div>
+
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Modificaciones</h3>
+    <li class="list-group-item color4 m-1">Nos reservamos el derecho de modificar estos términos en cualquier momento...</li>
+  </ul>
+</div>
+
+
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <h3>Contacto</h3>
+    <li class="list-group-item color4 m-1">Si tienes alguna pregunta, contáctanos en [correo electrónico o número de teléfono].</li>
+  </ul>
+</div>
+
+<div class="container">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Esto renderiza los campos del formulario con etiquetas y widgets personalizados -->
+    <button type="submit" class="btn btn-dark mb-5">Aceptar</button>
+  </form>
+</div>
+
+{% endblock %}
